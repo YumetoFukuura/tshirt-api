@@ -3,6 +3,7 @@ from fastapi.responses import StreamingResponse
 from PIL import Image, ImageOps
 import io
 
+
 app = FastAPI()
 
 def apply_to_tshirt(tshirt_path, mask_path, overlay_file):
@@ -37,3 +38,11 @@ async def generate_mock(overlay: UploadFile = File(...)):
     output_img.save(buffer, format="PNG")
     buffer.seek(0)
     return StreamingResponse(buffer, media_type="image/png")
+
+import os
+import uvicorn
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 8000))  # Renderが与えるポート番号を取得
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
+

@@ -3,5 +3,5 @@ services:
     name: tshirt-api
     env: python
     buildCommand: "pip install -r requirements.txt"
-    startCommand: "uvicorn main:app --host 0.0.0.0 --port 10000"
+    startCommand: "python main.py"  # ✅ PORT環境変数を使う
     plan: free
